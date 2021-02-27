@@ -1,4 +1,6 @@
 #include<bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
 #define ll long long int 
 #define vi vector<int>
 #define vl vector<ll>
@@ -14,35 +16,23 @@
 #define ub(a,b) upper_bound(a.begin(),a.end(),b)
 #define st(a) sort(a.begin(),a.end());
 #define s(a) a.size()
+#define o_set tree<pair<int,int>, null_type,less<pair<int,int>>, rb_tree_tag,tree_order_statistics_node_update> 
  
+using namespace __gnu_pbds;
 using namespace std;
- 
- 
+
 int main()
-{ ll n;
-cin>>n;
-ll dp[n+1];
- 
-	dp[0]=1;  
-	fr(i,1,n+1)
-	{   dp[i]=0;
-	    if(i>=1)
-	    dp[i]+=dp[i-1];
-	    if(i>=2)
-	    dp[i]+=dp[i-2];
-	    if(i>=3)
-	    dp[i]+=dp[i-3];
-	    if(i>=4)
-	    dp[i]+=dp[i-4];
-	    if(i>=5)
-	    dp[i]+=dp[i-5];
-	    if(i>=6)
-	    dp[i]+=dp[i-6];
-	    dp[i]%=1000000007;
-	  
-	}
-cout<<dp[n]<<endl;
-	
-	
-	
+{  string s;
+cin>>s;
+vector<int>a;
+int y=1;
+fr(i,1,s.length())
+{
+    if(s[i]==s[i-1])
+    y++;
+    else
+   { a.pb(y);y=1;}
+} a.pb(y);
+st(a);
+cout<<a[a.size()-1]<<endl;
 }
