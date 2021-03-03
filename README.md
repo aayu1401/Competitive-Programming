@@ -1,1 +1,1 @@
-# Codeforces
+# Competitive Coding
