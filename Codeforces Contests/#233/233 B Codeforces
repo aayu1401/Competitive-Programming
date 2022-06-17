@@ -1,0 +1,223 @@
+#include<bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+#define ll long long int 
+#define vi vector<int>
+#define vl vector<ll>
+#define vvll vector<pair<ll,ll>>
+#define vvil vector<pair<int,ll>>
+#define vvii vector<pair<int,int>>
+#define mll map<ll,ll>
+#define umll unordered_map<ll,ll>
+#define umsl unordered_map<string,ll>
+#define mlll map<ll,pair<ll,ll>>
+#define mllll map<pair<ll,ll>,pair<ll,ll>>
+#define que queue<ll>
+#define deq deque<ll>
+#define stk stack<ll>
+#define fr(i,a,b) for(ll i=a;i<b;i++)
+#define frr(i,a,b) for(ll i=a;i>=b;i--)
+#define fra(i,a,b,c) for(ll i=a;i<b;i+=c)
+#define frs(i,a,b,c) for(ll i=a;i>=b;i-=c)
+#define frm(i,a,b,c) for(ll i=a;i<b;i*=c)
+#define frd(i,a,b,c) for(ll i=a;i<b;i/=c)
+#define aut(i,a) for(auto i:a)
+#define pb push_back
+#define pf push_front
+#define pp pop_back
+#define ppf pop_front
+#define mp make_pair
+#define fi first
+#define se second
+#define lb(a,b) lower_bound(a.begin(),a.end(),b)
+#define ub(a,b) upper_bound(a.begin(),a.end(),b)
+#define st(a) sort(a.begin(),a.end());
+#define s(a) a.size()
+#define o_set tree<int, null_type,less<int>, rb_tree_tag,tree_order_statistics_node_update> 
+#define ook(k) order_of_key(k)
+#define foo(k) find_by_order(k)
+#define pq priority_queue<ll>
+#define pqm priority_queue <int, vector<int>, greater<int>> g 
+#define fast  ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define test  ll t;cin>>t;while(t--)
+#define en "\n"
+ 
+ 
+using namespace __gnu_pbds;
+using namespace std;
+ 
+ll ans=LONG_MAX;
+ 
+/* bool isquare(ll A) {
+   ll p=100005;
+    ll l=0,h=min(p,A);
+    while(abs(l-h)>1)
+    {
+        ll mid= (l+h)/2;
+        if((mid*mid)>A)
+        h=mid-1;
+        else
+        l=mid;
+    }
+    if(h*h==A || l*l==A)
+    return true;
+    return false;
+} 
+ 
+vector<ll> prime;
+void pr()
+{
+    bool b[100005];
+    for(ll i=0;i<100005;i++)
+    b[i]=false;
+    b[0]=true; b[1]=true;
+    for(ll i=2;i<root(100005);i++)
+    {
+        if(b[i]==false)
+        {
+            for(ll j=i*i;j<100005;j+=i )
+            b[j]=true;
+        }
+    }
+     for(ll i=0;i<100005;i++)
+    {if(b[i]==false)
+    prime.push_back(i);}
+    
+}
+ll gcd(ll a, ll b)
+{
+    if(a==0)
+    return b;
+    else if(b==0)
+    return a;
+    else if(a>b)
+    return gcd(b,a%b);
+    else
+    return gcd(b%a,a);
+} 
+ long long int stringtoint(string s)
+{
+    long long int p=0;
+    for(int i=0;i<s.length();i++)
+    {
+        p*=10;
+        p+=(s[i]-'0');
+    } return p;
+}
+vector <int> bfs(vector<int> g[], int N) {
+vector<int>a;
+queue<int>b;
+bool c[N]={false};
+b.push(0);
+c[0]=true;
+while(!b.empty())
+{ int p=b.front();
+ 
+a.push_back(p);
+for(int i=0;i<g[p].size();i++)
+{ if(c[g[p][i]]==false)
+   { b.push(g[p][i]);
+       c[g[p][i]]=true;}
+   }
+    
+    b.pop();
+}
+return a;
+}
+ll dij(ll x , ll y , vvll a[],ll n)
+{
+    ll dist[n],c,d;
+    fr(i,0,n)
+    dist[i]=LONG_MAX;
+    dist[x]=0;
+    bool b[n]={false};
+    multiset<pair<ll,ll>>s;
+    pair<ll,ll>p;
+    s.insert({x,0});
+    while(!s.empty())
+    { p=*s.begin();
+    s.erase(s.begin());
+    c=p.first; d=p.second;
+    if(b[c]==true)
+    continue;
+    b[c]=true;
+    fr(j,0,a[c].size())
+    {
+        if(dist[c]+a[c][j].second< dist[a[c][j].first])
+        {
+            dist[a[c][j].first]=dist[c]+a[c][j].second;
+            s.insert({a[c][j].first,dist[a[c][j].first]});
+        }
+    }
+        
+    }
+    if(dist[y]==LONG_MAX)
+    return -1;
+    return dist[y];
+}
+ 
+bool cmp(pair<int,int>a,pair<int,int>b)
+{
+    if(a.first==b.first)
+     return (a.second<b.second);
+    return (a.first<b.first);
+   
+}
+*/
+bool check(ll sum,ll num)
+{
+    ll s=0;
+    while(num>0)
+    {
+        s+=num%10;
+        num/=10;
+    }
+    if(s==sum)
+    return true;
+    return false;
+}
+void solve()
+{  ll n;
+cin>>n;
+ll ans=LONG_MAX;
+ 
+fr(i,0,163)
+{ ll d= i*i + 4*n;
+d=sqrt(d);
+if(d<=i)
+continue;
+else
+d-=i;
+ 
+if(d%2!=0)
+continue;
+else d/=2;
+ 
+if(check(i,d)==true && d>0)
+{if(d*d +i*d==n)
+ans=min(ans,d);
+    //cout<<d<<" ";
+}
+}
+if(ans==LONG_MAX)
+cout<<-1<<en;
+else
+cout<<ans<<en;
+}
+ 
+int main()
+{  /* #ifndef ONLINE_JUDGE
+  
+    // For getting input from input.txt file
+    freopen("input.txt", "r", stdin);
+  
+    // Printing the Output to output.txt file
+    freopen("output.txt", "w", stdout);
+  
+#endif */
+ 
+    fast;
+    solve();
+ 
+ 
+}
